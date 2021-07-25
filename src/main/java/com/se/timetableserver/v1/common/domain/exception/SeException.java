@@ -1,21 +1,27 @@
 package com.se.timetableserver.v1.common.domain.exception;
 
-public class SeException extends Exception{
+import org.springframework.http.HttpStatus;
 
-  // HTTP error code
-  private final int errorCode;
+public class SeException extends RuntimeException {
 
-  public SeException(final int errorCode, final String msg, final Throwable cause){
-    super(msg, cause);
-    this.errorCode = errorCode;
+  private final HttpStatus status;
+
+  public SeException(HttpStatus status, String message) {
+    super(message);
+    this.status = status;
   }
 
-  public SeException(final int errorCode, final String msg){
-    super(msg);
-    this.errorCode = errorCode;
+  public SeException(HttpStatus status, String message, Throwable cause) {
+    super(message, cause);
+    this.status = status;
   }
 
-  public int getErrorCode() {
-    return errorCode;
+  public SeException(HttpStatus status, Throwable cause) {
+    super(cause);
+    this.status = status;
+  }
+
+  public HttpStatus getHttpStatus() {
+    return status;
   }
 }

@@ -2,7 +2,6 @@ package com.se.timetableserver.v1.security.infra.provider;
 
 import com.se.timetableserver.v1.account.application.service.AccountContextService;
 import com.se.timetableserver.v1.security.domain.exception.checked.InvalidTokenException;
-import com.se.timetableserver.v1.common.domain.exception.unchecked.SeRuntimeException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jws;
@@ -66,7 +65,7 @@ public class JwtTokenResolver {
       return true;
     }
     catch (ExpiredJwtException | InvalidTokenException e){
-      throw new SeRuntimeException("Failed to validate JWT token.", e);
+      throw new InvalidTokenException("Failed to validate JWT token.", e);
     }
     catch (Exception e) {
       return false;

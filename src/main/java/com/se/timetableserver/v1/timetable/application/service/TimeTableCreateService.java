@@ -1,7 +1,6 @@
 package com.se.timetableserver.v1.timetable.application.service;
 
-import com.se.timetableserver.v1.common.domain.exception.checked.IdAlreadyExistsException;
-import com.se.timetableserver.v1.common.domain.exception.checked.SeCheckedException;
+import com.se.timetableserver.v1.common.domain.exception.UniqueValueAlreadyExistsException;
 import com.se.timetableserver.v1.timetable.application.dto.TimeTableCreateDto;
 import com.se.timetableserver.v1.timetable.domain.model.TimeTable;
 import com.se.timetableserver.v1.timetable.domain.model.TimeTableStatus;
@@ -22,9 +21,9 @@ public class TimeTableCreateService {
   }
 
   @Transactional
-  public Long create(TimeTableCreateDto.Request request) throws IdAlreadyExistsException {
+  public Long create(TimeTableCreateDto.Request request){
     if(timeTableRepository.findByName(request.getName()).isPresent()){
-      throw new IdAlreadyExistsException("Time table's name already exists.");
+      throw new UniqueValueAlreadyExistsException("Time table's name " + request.getName() + " already exists.");
     }
 
     TimeTable timeTable = new TimeTable(

@@ -1,32 +1,21 @@
 package com.se.timetableserver.v1.timetable.adapter.controller;
 
 import com.se.timetableserver.v1.common.application.dto.SuccessResponse;
-import com.se.timetableserver.v1.common.domain.exception.checked.IdAlreadyExistsException;
 import com.se.timetableserver.v1.timetable.application.dto.TimeTableCreateDto;
 import com.se.timetableserver.v1.timetable.application.service.TimeTableCreateService;
-import com.se.timetableserver.v1.timetable.application.service.TimeTableDeleteService;
-import com.se.timetableserver.v1.timetable.application.service.TimeTableReadService;
-import com.se.timetableserver.v1.timetable.application.service.TimeTableUpdateService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/administrator")
+@RequestMapping("/api/v1/")
 @Api(tags = "시간표 관리")
 public class TimeTableApiController {
 
@@ -53,7 +42,7 @@ public class TimeTableApiController {
   @PostMapping(path = "/timetable")
   @ResponseStatus(value = HttpStatus.CREATED)
   @ApiOperation(value = "시간표 추가")
-  public SuccessResponse<Long> create(@RequestBody @Validated TimeTableCreateDto.Request request) throws IdAlreadyExistsException {
+  public SuccessResponse<Long> create(@RequestBody @Validated TimeTableCreateDto.Request request) {
     return new SuccessResponse<>(HttpStatus.CREATED.value(), "시간표 생성에 성공했습니다.", timeTableCreateService.create(request));
   }
 
