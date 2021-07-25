@@ -1,7 +1,7 @@
 package com.se.timetableserver.v1.security.infra.provider;
 
 import com.se.timetableserver.v1.account.application.service.AccountContextService;
-import com.se.timetableserver.v1.security.domain.exception.checked.InvalidTokenException;
+import com.se.timetableserver.v1.security.domain.exception.InvalidTokenException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jws;

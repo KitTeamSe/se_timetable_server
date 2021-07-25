@@ -1,4 +1,4 @@
-package com.se.timetableserver.v1.security.domain.exception.checked;
+package com.se.timetableserver.v1.security.domain.exception;
 
 import com.se.timetableserver.v1.common.domain.exception.SeException;
 import org.springframework.http.HttpStatus;
